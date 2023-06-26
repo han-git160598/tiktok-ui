@@ -9,16 +9,36 @@ import images  from "~/assets/images";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
+import Menu from "~/components/Popper/Menu";
+import { faCircleQuestion, faEarthAsia, faKeyboard } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const cx = classNames.bind(styles);
 
+const MENU_ITEMS = [
+    {
+        icon : <FontAwesomeIcon icon = {faEarthAsia}></FontAwesomeIcon>,
+        title : 'English'
+    },
+    {
+        icon : <FontAwesomeIcon icon = {faCircleQuestion}></FontAwesomeIcon>,
+        title : 'Feedback and help',
+        to: '/feedback',
+    },
+    {
+        icon : <FontAwesomeIcon icon = {faKeyboard}></FontAwesomeIcon>,
+        title : 'keyboard shortcuts'
+    },
+]
+
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
-    useEffect  (()=>{
-        setTimeout(() => {
-            setSearchResult([])
-        }, 0);
-    })
+    // useEffect  (()=>{
+    //     setTimeout(() => {
+    //         setSearchResult([])
+    //     }, 5000);
+    // })
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -57,27 +77,14 @@ function Header() {
                 <div className={cx('actions')}>
                     <Button text>Upload</Button>
                     <Button  primary >Login</Button>
-                    <Tippy
-                    interactive
-           
-                    placement="bottom-end"
-                    render ={attrs =>(
-                        <div className={cx('menu-items')} tabIndex="-1">
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>
-                                    Accounts
-                                </h4>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <button className={cx('more-btn')}>
-                        <FontAwesomeIcon icon={faEllipsisVertical} />
-                    </button>
-                    </Tippy>
+                   <Menu 
+                        items={MENU_ITEMS}
+                   >
+                        <button className={cx('more-btn')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                   </Menu>
+                   
                 </div>
             </div>
 
