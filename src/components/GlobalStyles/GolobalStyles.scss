@@ -29,6 +29,7 @@ body{
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    color: var(--text-color);
 }
 
 button, input, [tabindex] {
@@ -41,3 +42,24 @@ a[href] {
     text-decoration: none;
 }
 
+//custom tippy tooltip
+body {
+    .tippy-box {
+        background-color: rgba(84, 84, 84, 0.92);
+        font-size: 1.6rem;
+        line-height: 22px;
+        font-weight: 600;
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+    
+    .tippy-content {
+        padding: 8px 9px;
+    }
+    .tippy-box[data-palcement^=bottom]>.tippy-arrow:before {
+        top: -8px;
+    }
+
+}
