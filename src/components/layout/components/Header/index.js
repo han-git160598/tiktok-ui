@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical, faCloudUpload, faMessage, faCoins, faGear, faPersonRifle, faSign, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark, faSpinner, faMagnifyingGlass, faEllipsisVertical, faCoins, faGear, faPersonRifle, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from "@tippyjs/react";
 import 'tippy.js/dist/tippy.css';
@@ -13,7 +13,9 @@ import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
-
+import UploadIcon from "~/components/Icons";
+import Image from "~/components/Image";
+ 
 
 const cx = classNames.bind(styles);
 
@@ -50,11 +52,11 @@ const MENU_ITEMS = [
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
-    // useEffect  (()=>{
-    //     setTimeout(() => {
-    //         setSearchResult([])
-    //     }, 5000);
-    // })
+    useEffect  (()=>{
+        setTimeout(() => {
+            setSearchResult([1, 1, 1, 1, 1, 1, 1])
+        }, 500);
+    })
 
     //Handle
     const handleMenuChange = (menuItem) => {
@@ -133,7 +135,8 @@ function Header() {
                     <>
                         <Tippy delay={[0, 500]} content="Upload videos" placement="bottom">
                             <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faCloudUpload} />
+                                {/* <FontAwesomeIcon icon={faCloudUpload} /> */}
+                                <UploadIcon></UploadIcon>
                             </button>
                         </Tippy>
 
@@ -149,7 +152,14 @@ function Header() {
                     onChange ={handleMenuChange}
                 >
                     {currentUser ? (
-                        <img className={cx('user-avatar')} alt="Nguyen Gia Han" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRydDMnmCaixurm1J9kPw9diXMWPzO98ASdL3bjbsbzygpLTY0v" />
+                        <Image 
+                            className={cx('user-avatar')} 
+                            alt="Nguyen Gia Han" 
+                            src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRydDMnmCaixurm1J9kPw9diXMWPzO98ASdL3bjbsbzygpLTY0v" 
+                            fallback="https://avatars.githubusercontent.com/u/58239643?v=4"
+                       
+                        />
+                    
                     ) : (
                         <>
                             <button className={cx('more-btn')}>
